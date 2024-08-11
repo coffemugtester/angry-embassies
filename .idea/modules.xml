@@ -4,7 +4,7 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/angry-embassies.iml" filepath="$PROJECT_DIR$/angry-embassies.iml" />
       <module fileurl="file://$PROJECT_DIR$/data_persistance.iml" filepath="$PROJECT_DIR$/data_persistance.iml" />
-      <module fileurl="file://$PROJECT_DIR$/json_builder.iml" filepath="$PROJECT_DIR$/json_builder.iml" />
+      <module fileurl="file://$PROJECT_DIR$/maker.iml" filepath="$PROJECT_DIR$/maker.iml" />
     </modules>
   </component>
 </project>

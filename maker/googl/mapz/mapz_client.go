@@ -4,7 +4,7 @@ import (
 	"encoding/json"
 	"fmt"
 	"io"
-	"json_builder/models"
+	"maker/models"
 	"net/http"
 	"net/url"
 )

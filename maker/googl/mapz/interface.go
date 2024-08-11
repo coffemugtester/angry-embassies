@@ -1,6 +1,6 @@
 package mapz
 
-import "json_builder/models"
+import "maker/models"
 
 type MapsClient interface {
 	// GetGoogleID returns the Google id of the location

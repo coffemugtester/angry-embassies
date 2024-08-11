@@ -1,8 +1,8 @@
 package googl
 
 import (
-	"json_builder/googl/mapz"
-	"json_builder/models"
+	"maker/googl/mapz"
+	"maker/models"
 )
 
 type Client struct {
