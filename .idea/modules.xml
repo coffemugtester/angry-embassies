@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/angry-embassies.iml" filepath="$PROJECT_DIR$/angry-embassies.iml" />
+      <module fileurl="file://$PROJECT_DIR$/data_persistance.iml" filepath="$PROJECT_DIR$/data_persistance.iml" />
+      <module fileurl="file://$PROJECT_DIR$/json_builder.iml" filepath="$PROJECT_DIR$/json_builder.iml" />
+    </modules>
+  </component>
+</project>

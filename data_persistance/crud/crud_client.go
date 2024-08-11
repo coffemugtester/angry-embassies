@@ -1,0 +1,81 @@
+package crud
+
+import (
+	"angry-embassies/conf"
+	"context"
+	"fmt"
+	"go.mongodb.org/mongo-driver/bson"
+	"go.mongodb.org/mongo-driver/mongo"
+	"go.mongodb.org/mongo-driver/mongo/options"
+)
+
+var _ MongoClient = (*MongoImpl)(nil)
+
+type MongoImpl struct {
+	client     *mongo.Client
+	collection *mongo.Collection
+}
+
+func (t MongoImpl) Connect(mgoConf conf.MgoConfig) (*mongo.Client, error) {
+
+	client, err := mongo.Connect(context.TODO(), options.Client().ApplyURI(mgoConf.MongoUri))
+	if err != nil {
+		fmt.Printf("Error connecting to MongoDB: %v", err)
+		return nil, err
+	}
+
+	return client, nil
+}
+
+func (t MongoImpl) Ping() error {
+	err := t.client.Ping(context.TODO(), nil)
+	if err != nil {
+		fmt.Printf("Error pinging MongoDB: %v", err)
+		return err
+	}
+	return nil
+}
+
+func (t MongoImpl) Collection(nameDB, nameCollection string) *mongo.Collection {
+	return t.client.Database(nameDB).Collection(nameCollection)
+}
+
+func (t MongoImpl) InsertOne(document string) (string, error) {
+	//TODO: assert only proper bson types are used
+	bsonDoc := bson.M{"message": document}
+
+	id, err := t.collection.InsertOne(context.TODO(), bsonDoc)
+	if err != nil {
+		fmt.Printf("Error inserting document: %v", err)
+		return "", err
+	}
+
+	return fmt.Sprintf("%v", id), nil
+}
+
+type Client struct {
+	mgoDB         string
+	mgoCollection string
+	mongoImpl     MongoClient
+}
+
+func NewCRUDClient(mgoConf conf.MgoConfig, mongoImpl MongoImpl) *Client {
+
+	fmt.Printf("Creating new CRUD client with config: %v\n", mgoConf)
+
+	mongoImpl.client, _ = mongoImpl.Connect(mgoConf)
+	mongoImpl.collection = mongoImpl.Collection(mgoConf.MongoDb, mgoConf.MongoCollection)
+
+	mongoImpl.Connect(mgoConf)
+	fmt.Printf("Connected to MongoDB\n")
+	fmt.Printf("t.client nil: %v\n", mongoImpl.client == nil)
+
+	fmt.Printf("Pinging MongoDB\n")
+
+	mongoImpl.Ping()
+	return &Client{
+		mgoDB:         mgoConf.MongoDb,
+		mgoCollection: mgoConf.MongoCollection,
+		mongoImpl:     mongoImpl,
+	}
+}

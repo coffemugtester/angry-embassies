@@ -1,0 +1,6 @@
+api_key: ""
+domain: ""
+mgo:
+  mongo_uri: ""
+  mongo_db: ""
+  mongo_collection: ""
