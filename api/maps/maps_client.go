@@ -1,15 +1,15 @@
-package mapz
+package maps
 
 import (
+	"angry-embassies/models"
 	"encoding/json"
 	"fmt"
 	"io"
-	"maker"
 	"net/http"
 	"net/url"
 )
 
-var _ MapsClient = (*Client)(nil)
+var _ ClientInterface = (*Client)(nil)
 
 // Client mapzImplementation
 type Client struct {
@@ -54,9 +54,9 @@ func (c Client) GetGoogleID(placeQuery string) (id string) {
 	return id
 }
 
-func (c Client) GetPlaceDetails(placeID string) (embassy_factory.PlaceDetails, error) {
+func (c Client) GetPlaceDetails(placeID string) (models.PlaceDetails, error) {
 
-	var details embassy_factory.PlaceDetails
+	var details models.PlaceDetails
 
 	mapsURL := "https://maps.googleapis.com/maps/api/place/details/json?fields=name,rating,opening_hours,website,address_components,adr_address,business_status,formatted_address,formatted_phone_number,geometry,rating,user_ratings_total,reviews,opening_hours,photos,current_opening_hours,editorial_summary,icon,icon_background_color,place_id,plus_code,secondary_opening_hours,types,url,website,wheelchair_accessible_entrance,international_phone_number&reviews_sort=newest&reviews_no_translations=true&place_id=" + placeID + "&key=" + c.apiKey
 
@@ -78,15 +78,15 @@ func (c Client) GetPlaceDetails(placeID string) (embassy_factory.PlaceDetails, e
 	}
 
 	if err := json.Unmarshal(body, &details); err != nil {
-		// TODO: decide weather to use a struct or a pointer so it can be null
+		// TODO: use a struct or a pointer so it can be null
 		return details, fmt.Errorf("error: %v", err)
 	}
 
 	return details, nil
 }
 
-// NewMapzClient creates a new mapz client
-func NewMapzClient(apiKey string) *Client { // add apikey as a parameter
+// NewMapsClient creates a new mapz client
+func NewMapsClient(apiKey string) *Client { // add apikey as a parameter
 	return &Client{
 		apiKey: apiKey,
 	}

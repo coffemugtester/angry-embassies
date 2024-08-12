@@ -1,6 +1,6 @@
 package usecases
 
-import "data_persistance/client"
+import "repository/client"
 
 var _ PersistenceClient = (*PersistenceUsecase)(nil)
 

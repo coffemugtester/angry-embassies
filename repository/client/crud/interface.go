@@ -10,5 +10,5 @@ type MongoClient interface {
 	Connect(mgoConf conf.MgoConfig) (*mongo.Client, error)
 	Ping() error
 	Collection(nameDB, nameCollection string) *mongo.Collection
-	InsertOne(document embassy_factory.Embassy) (string, error)
+	InsertOne(document api.Embassy) (string, error)
 }

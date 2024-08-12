@@ -1,17 +1,18 @@
-package embassy_factory
+package api
 
 import (
-	"embassy_factory/mapz"
+	"angry-embassies/models"
+	"api/maps"
 )
 
 type Client struct {
-	*mapz.Client
+	*maps.Client
 }
 
 func NewClient(apiKey string) *Client {
-	mapzClient := mapz.NewMapzClient(apiKey)
+	mapsClient := maps.NewMapsClient(apiKey)
 	return &Client{
-		mapzClient,
+		mapsClient,
 	}
 }
 
@@ -19,6 +20,6 @@ func (c Client) GetGoogleID(placeQuery string) string {
 	return c.Client.GetGoogleID(placeQuery)
 }
 
-func (c Client) GetPlaceDetails(placeQuery string) (PlaceDetails, error) {
+func (c Client) GetPlaceDetails(placeQuery string) (models.PlaceDetails, error) {
 	return c.Client.GetPlaceDetails(placeQuery)
 }

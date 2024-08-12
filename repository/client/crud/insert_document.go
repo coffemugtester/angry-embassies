@@ -5,7 +5,7 @@ import (
 	"fmt"
 )
 
-func InsertDocument(client *Client, document embassy_factory.Embassy) (string, error) {
+func InsertDocument(client *Client, document api.Embassy) (string, error) {
 	fmt.Printf("Inserting document: %v\n", document)
 
 	client.mongoImpl.Collection(client.mgoDB, client.mgoCollection)

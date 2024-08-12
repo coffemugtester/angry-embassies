@@ -2,8 +2,8 @@ package crud
 
 import (
 	"angry-embassies/conf"
+	"angry-embassies/models"
 	"context"
-	"embassy_factory"
 	"fmt"
 	"go.mongodb.org/mongo-driver/mongo"
 	"go.mongodb.org/mongo-driver/mongo/options"
@@ -40,7 +40,7 @@ func (t MongoImpl) Collection(nameDB, nameCollection string) *mongo.Collection {
 	return t.client.Database(nameDB).Collection(nameCollection)
 }
 
-func (t MongoImpl) InsertOne(document embassy_factory.Embassy) (string, error) {
+func (t MongoImpl) InsertOne(document models.Embassy) (string, error) {
 	id, err := t.collection.InsertOne(context.TODO(), document)
 	if err != nil {
 		fmt.Printf("Error inserting document: %v", err)

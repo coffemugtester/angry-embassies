@@ -1,4 +1,4 @@
-package embassy_factory
+package models
 
 type Embassy struct {
 	HomeCountry  string       `bson:"home_country"`
