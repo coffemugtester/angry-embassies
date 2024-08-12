@@ -3,8 +3,8 @@ package crud
 import (
 	"angry-embassies/conf"
 	"context"
+	"embassy_factory"
 	"fmt"
-	"go.mongodb.org/mongo-driver/bson"
 	"go.mongodb.org/mongo-driver/mongo"
 	"go.mongodb.org/mongo-driver/mongo/options"
 )
@@ -40,11 +40,8 @@ func (t MongoImpl) Collection(nameDB, nameCollection string) *mongo.Collection {
 	return t.client.Database(nameDB).Collection(nameCollection)
 }
 
-func (t MongoImpl) InsertOne(document string) (string, error) {
-	//TODO: assert only proper bson types are used
-	bsonDoc := bson.M{"message": document}
-
-	id, err := t.collection.InsertOne(context.TODO(), bsonDoc)
+func (t MongoImpl) InsertOne(document embassy_factory.Embassy) (string, error) {
+	id, err := t.collection.InsertOne(context.TODO(), document)
 	if err != nil {
 		fmt.Printf("Error inserting document: %v", err)
 		return "", err

@@ -1,8 +1,9 @@
-package data_persistance
+package client
 
 import (
 	"angry-embassies/conf"
-	"data_persistance/crud"
+	"data_persistance/client/crud"
+	"embassy_factory"
 )
 
 type Client struct {
@@ -16,6 +17,6 @@ func NewClient(mgo conf.MgoConfig) *Client {
 	}
 }
 
-func (c Client) InsertDocument(document string) (string, error) {
+func (c Client) InsertDocument(document embassy_factory.Embassy) (string, error) {
 	return crud.InsertDocument(c.Client, document)
 }

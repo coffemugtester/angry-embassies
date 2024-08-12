@@ -2,14 +2,14 @@ package config
 
 import (
 	"angry-embassies/conf"
-	"data_persistance"
+	"data_persistance/client"
+	"embassy_factory"
 	"fmt"
-	"maker/googl"
 )
 
 type Dependencies struct {
-	PersistorClient *data_persistance.Client
-	MakerClient     *googl.Client
+	PersistorClient *client.Client
+	MakerClient     *embassy_factory.Client
 	//EmbassyService *services.EmbassyService
 	//MgoService     *services.MgoService
 	//GoogleService  *services.GoogleService
@@ -20,10 +20,10 @@ func InitDependencies() (Dependencies, error) {
 	cfg := conf.LoadConfig()
 	fmt.Printf("Config loaded: %v\n", cfg)
 
-	persistorClient := data_persistance.NewClient(cfg.Mgo)
+	persistorClient := client.NewClient(cfg.Mgo)
 	fmt.Printf("PersistorClient created: %v\n", persistorClient)
 
-	makerClient := googl.NewClient(cfg.ApiKey)
+	makerClient := embassy_factory.NewClient(cfg.ApiKey)
 
 	//mgoUsecase := usecases.NewInsertUseCase(cfg.Mgo)
 	//embassyUsecase := usecases.NewEmbassyUsecase(cfg.Domain)

@@ -1,8 +1,7 @@
-package googl
+package embassy_factory
 
 import (
-	"maker/googl/mapz"
-	"maker/models"
+	"embassy_factory/mapz"
 )
 
 type Client struct {
@@ -20,6 +19,6 @@ func (c Client) GetGoogleID(placeQuery string) string {
 	return c.Client.GetGoogleID(placeQuery)
 }
 
-func (c Client) GetPlaceDetails(placeQuery string) (models.PlaceDetails, error) {
+func (c Client) GetPlaceDetails(placeQuery string) (PlaceDetails, error) {
 	return c.Client.GetPlaceDetails(placeQuery)
 }

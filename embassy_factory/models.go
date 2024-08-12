@@ -1,9 +1,9 @@
-package models
+package embassy_factory
 
 type Embassy struct {
 	HomeCountry  string       `bson:"home_country"`
 	HostCountry  string       `bson:"host_country"`
-	Name         string       `bson:"name"`
+	Consulate    bool         `bson:"consulate"`
 	MapLink      string       `bson:"map_link"`
 	City         string       `bson:"city"`
 	GoogleID     string       `bson:"google_id"`

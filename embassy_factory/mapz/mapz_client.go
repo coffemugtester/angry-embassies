@@ -4,7 +4,7 @@ import (
 	"encoding/json"
 	"fmt"
 	"io"
-	"maker/models"
+	"maker"
 	"net/http"
 	"net/url"
 )
@@ -54,9 +54,9 @@ func (c Client) GetGoogleID(placeQuery string) (id string) {
 	return id
 }
 
-func (c Client) GetPlaceDetails(placeID string) (models.PlaceDetails, error) {
+func (c Client) GetPlaceDetails(placeID string) (embassy_factory.PlaceDetails, error) {
 
-	var details models.PlaceDetails
+	var details embassy_factory.PlaceDetails
 
 	mapsURL := "https://maps.googleapis.com/maps/api/place/details/json?fields=name,rating,opening_hours,website,address_components,adr_address,business_status,formatted_address,formatted_phone_number,geometry,rating,user_ratings_total,reviews,opening_hours,photos,current_opening_hours,editorial_summary,icon,icon_background_color,place_id,plus_code,secondary_opening_hours,types,url,website,wheelchair_accessible_entrance,international_phone_number&reviews_sort=newest&reviews_no_translations=true&place_id=" + placeID + "&key=" + c.apiKey
 

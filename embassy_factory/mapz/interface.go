@@ -1,9 +1,9 @@
 package mapz
 
-import "maker/models"
+import "maker"
 
 type MapsClient interface {
 	// GetGoogleID returns the Google id of the location
 	GetGoogleID(placeQuery string) string
-	GetPlaceDetails(placeQuery string) (models.PlaceDetails, error)
+	GetPlaceDetails(placeQuery string) (embassy_factory.PlaceDetails, error)
 }
