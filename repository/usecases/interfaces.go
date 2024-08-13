@@ -1,7 +1,9 @@
 package usecases
 
-import "embassy_factory"
+import (
+	"angry-embassies/models"
+)
 
 type PersistenceClient interface {
-	InsertDocument(document api.Embassy) (string, error)
+	InsertDocument(document models.Embassy) (string, error)
 }

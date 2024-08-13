@@ -2,7 +2,7 @@ package crud
 
 import (
 	"angry-embassies/conf"
-	"embassy_factory"
+	"angry-embassies/models"
 	"go.mongodb.org/mongo-driver/mongo"
 )
 
@@ -10,5 +10,5 @@ type MongoClient interface {
 	Connect(mgoConf conf.MgoConfig) (*mongo.Client, error)
 	Ping() error
 	Collection(nameDB, nameCollection string) *mongo.Collection
-	InsertOne(document api.Embassy) (string, error)
+	InsertOne(document models.Embassy) (string, error)
 }

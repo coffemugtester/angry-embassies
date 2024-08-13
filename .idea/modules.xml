@@ -3,7 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/angry-embassies.iml" filepath="$PROJECT_DIR$/angry-embassies.iml" />
-      <module fileurl="file://$PROJECT_DIR$/embassy_factory.iml" filepath="$PROJECT_DIR$/embassy_factory.iml" />
+      <module fileurl="file://$PROJECT_DIR$/api.iml" filepath="$PROJECT_DIR$/api.iml" />
       <module fileurl="file://$PROJECT_DIR$/repository.iml" filepath="$PROJECT_DIR$/repository.iml" />
     </modules>
   </component>

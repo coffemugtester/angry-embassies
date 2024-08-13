@@ -2,17 +2,14 @@ package config
 
 import (
 	"angry-embassies/conf"
-	"api"
 	"fmt"
 	"repository/client"
+	"repository/services"
+	"repository/usecases"
 )
 
 type Dependencies struct {
-	PersistorClient *client.Client
-	MakerClient     *api.Client
-	//EmbassyService *services.EmbassyService
-	//MgoService     *services.MgoService
-	//GoogleService  *services.GoogleService
+	MgoService *services.MgoService
 }
 
 func InitDependencies() (Dependencies, error) {
@@ -23,17 +20,11 @@ func InitDependencies() (Dependencies, error) {
 	persistorClient := client.NewClient(cfg.Mgo)
 	fmt.Printf("PersistorClient created: %v\n", persistorClient)
 
-	makerClient := api.NewClient(cfg.ApiKey)
+	//makerClient := api.NewClient(cfg.ApiKey)
 
-	//mgoUsecase := usecases.NewInsertUseCase(cfg.Mgo)
-	//embassyUsecase := usecases.NewEmbassyUsecase(cfg.Domain)
-	//googleUsecase := usecases.NewGoogleUsecase(cfg.ApiKey)
+	mgoUseCase := *usecases.NewPersistenceUseCase(cfg.Mgo)
 
 	return Dependencies{
-		PersistorClient: persistorClient,
-		MakerClient:     makerClient,
-		//EmbassyService: services.NewEmbassyService(embassyUsecase),
-		//MgoService:     services.NewMgoService(mgoUsecase),
-		//GoogleService:  services.NewGoogleService(googleUsecase),
+		MgoService: services.NewMgoService(mgoUseCase),
 	}, nil
 }

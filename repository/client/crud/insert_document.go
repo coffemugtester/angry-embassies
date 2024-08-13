@@ -1,11 +1,11 @@
 package crud
 
 import (
-	"embassy_factory"
+	"angry-embassies/models"
 	"fmt"
 )
 
-func InsertDocument(client *Client, document api.Embassy) (string, error) {
+func InsertDocument(client *Client, document models.Embassy) (string, error) {
 	fmt.Printf("Inserting document: %v\n", document)
 
 	client.mongoImpl.Collection(client.mgoDB, client.mgoCollection)

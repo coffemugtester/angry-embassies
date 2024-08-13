@@ -1,6 +1,8 @@
 package main
 
 import (
+	"angry-embassies/config"
+	"angry-embassies/models"
 	"fmt"
 	"github.com/spf13/cobra"
 )
@@ -22,16 +24,20 @@ var getEmbassies = &cobra.Command{
 		host, _ := cmd.Flags().GetString("host")
 
 		//TODO: take input and pass it to the persister
-		//TODO: the persister calls the maker to an embassy object as json
-		//TODO: the persister writes the json to the database
-		//fmt.Println("Dependencies initialized")
-		//
-		//deps, err := config.InitDependencies()
-		//if err != nil {
-		//	fmt.Printf("config.InitDependencies error: %v\n", err)
-		//	return
-		//}
+		//TODO: the repository calls the maker to an embassy object as json
+		//TODO: the repository writes the json to the database
+		fmt.Println("Dependencies initialized")
 
+		deps, err := config.InitDependencies()
+		if err != nil {
+			fmt.Printf("config.InitDependencies error: %v\n", err)
+			return
+		}
+
+		test := models.Embassy{
+			HomeCountry: home,
+		}
+		deps.MgoService.InsertDocument(test)
 		// Print the formatted string
 		fmt.Printf("Fetching embassies for Home Country: %s and Host Country: %s\n", home, host)
 	},
