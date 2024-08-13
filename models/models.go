@@ -8,6 +8,7 @@ type Embassy struct {
 	City         string       `bson:"city"`
 	GoogleID     string       `bson:"google_id"`
 	PlaceDetails PlaceDetails `bson:"place_details"`
+	//TODO: implement methods to get the place details and the google id
 }
 
 type PlaceDetails struct {

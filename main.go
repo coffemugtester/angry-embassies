@@ -23,9 +23,6 @@ var getEmbassies = &cobra.Command{
 		home, _ := cmd.Flags().GetString("home")
 		host, _ := cmd.Flags().GetString("host")
 
-		//TODO: take input and pass it to the persister
-		//TODO: the repository calls the maker to an embassy object as json
-		//TODO: the repository writes the json to the database
 		fmt.Println("Dependencies initialized")
 
 		deps, err := config.InitDependencies()
