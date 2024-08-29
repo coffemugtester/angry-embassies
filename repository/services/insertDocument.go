@@ -19,10 +19,6 @@ func NewMgoService(useCase usecases.PersistenceUseCase) *MgoService {
 
 func (m *MgoService) InsertDocument(home, host string) (string, error) {
 
-	embassy := models.Embassy{
-		HomeCountry: home,
-		HostCountry: host,
-	}
-
+	embassy := *models.NewEmbassy(home, host, false, "", "", "", models.PlaceDetails{})
 	return m.useCase.InsertDocument(embassy)
 }
