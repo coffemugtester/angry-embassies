@@ -27,6 +27,7 @@ func InitDependencies() (Dependencies, error) {
 
 	return Dependencies{
 		MgoService: services.NewMgoService(mgoUseCase),
-		ApiClient:  apiClient,
+		//TODO: create GoogleService
+		ApiClient: apiClient,
 	}, nil
 }

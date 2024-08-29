@@ -19,12 +19,23 @@ func NewMgoService(useCase usecases.PersistenceUseCase) *MgoService {
 }
 
 func (m *MgoService) InsertDocument(apiClient api.Client, home, host string) (string, error) {
+	var placeQuery string
 
 	embassy := *models.NewEmbassy(apiClient, home, host, false, "", "", "", models.PlaceDetails{})
-	//TODO: build placeQuery (embassy/consulate of home in city host)
-	embassy.ApiClient.GetGoogleID(embassy.HomeCountry)
+	if embassy.IsConsulate {
+		placeQuery = embassy.HomeCountry + " consulate in " + embassy.City + ", " + embassy.HostCountry
+	} else {
+		placeQuery = embassy.HomeCountry + " embassy in " + embassy.City + ", " + embassy.HostCountry
+	}
+
+	embassy.ApiClient.GetGoogleID(placeQuery)
 	//TODO: make GetPlaceDetails void
-	embassy.ApiClient.GetPlaceDetails(embassy.GoogleID)
+	placeDetails, err := embassy.ApiClient.GetPlaceDetails(embassy.GoogleID)
+	if err != nil {
+		return "", err
+	}
+
+	embassy.PlaceDetails = placeDetails
 
 	return m.useCase.InsertDocument(embassy)
 }

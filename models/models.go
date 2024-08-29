@@ -6,7 +6,7 @@ type Embassy struct {
 	ApiClient    api.Client
 	HomeCountry  string        `bson:"home_country"`
 	HostCountry  string        `bson:"host_country"`
-	Consulate    bool          `bson:"consulate"`
+	IsConsulate  bool          `bson:"consulate"`
 	MapLink      string        `bson:"map_link"`
 	City         string        `bson:"city"`
 	GoogleID     string        `bson:"google_id"`
@@ -20,7 +20,7 @@ func NewEmbassy(apiClient api.Client, homeCountry string, hostCountry string, co
 		ApiClient:    apiClient,
 		HomeCountry:  homeCountry,
 		HostCountry:  hostCountry,
-		Consulate:    consulate,
+		IsConsulate:  consulate,
 		MapLink:      mapLink,
 		City:         city,
 		GoogleID:     googleID,
