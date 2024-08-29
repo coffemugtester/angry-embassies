@@ -17,12 +17,12 @@ func NewMgoService(useCase usecases.PersistenceUseCase) *MgoService {
 	}
 }
 
-func (m *MgoService) InsertDocument(document models.Embassy) (string, error) {
-<<<<<<< HEAD
-=======
+func (m *MgoService) InsertDocument(home, host string) (string, error) {
 
-	//TODO: the repository service creates an embassy object
+	embassy := models.Embassy{
+		HomeCountry: home,
+		HostCountry: host,
+	}
 
->>>>>>> 87c1cb1 (add repositiory's usecase and service)
-	return m.useCase.InsertDocument(document)
+	return m.useCase.InsertDocument(embassy)
 }

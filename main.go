@@ -2,7 +2,6 @@ package main
 
 import (
 	"angry-embassies/config"
-	"angry-embassies/models"
 	"fmt"
 	"github.com/spf13/cobra"
 )
@@ -31,10 +30,10 @@ var getEmbassies = &cobra.Command{
 			return
 		}
 
-		test := models.Embassy{
-			HomeCountry: home,
-		}
-		deps.MgoService.InsertDocument(test)
+		test := "Hello, MongoDB!"
+		scndTest := "Hello, MongoDB! 2"
+
+		deps.MgoService.InsertDocument(test, scndTest)
 		// Print the formatted string
 		fmt.Printf("Fetching embassies for Home Country: %s and Host Country: %s\n", home, host)
 	},

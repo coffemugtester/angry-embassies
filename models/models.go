@@ -11,6 +11,18 @@ type Embassy struct {
 	//TODO: implement methods to get the place details and the google id
 }
 
+func NewEmbassy(homeCountry string, hostCountry string, consulate bool, mapLink string, city string, googleID string, placeDetails PlaceDetails) *Embassy {
+	return &Embassy{
+		HomeCountry:  homeCountry,
+		HostCountry:  hostCountry,
+		Consulate:    consulate,
+		MapLink:      mapLink,
+		City:         city,
+		GoogleID:     googleID,
+		PlaceDetails: placeDetails,
+	}
+}
+
 type PlaceDetails struct {
 	HtmlAttributions []interface{} `json:"html_attributions" bson:"html_attributions"`
 	Result           Result        `json:"result" bson:"result"`
