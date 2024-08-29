@@ -1,25 +1,30 @@
 package models
 
+import "api"
+
 type Embassy struct {
-	HomeCountry  string       `bson:"home_country"`
-	HostCountry  string       `bson:"host_country"`
-	Consulate    bool         `bson:"consulate"`
-	MapLink      string       `bson:"map_link"`
-	City         string       `bson:"city"`
-	GoogleID     string       `bson:"google_id"`
-	PlaceDetails PlaceDetails `bson:"place_details"`
+	ApiClient    api.Client
+	HomeCountry  string        `bson:"home_country"`
+	HostCountry  string        `bson:"host_country"`
+	Consulate    bool          `bson:"consulate"`
+	MapLink      string        `bson:"map_link"`
+	City         string        `bson:"city"`
+	GoogleID     string        `bson:"google_id"`
+	PlaceDetails *PlaceDetails `bson:"place_details"`
+
 	//TODO: implement methods to get the place details and the google id
 }
 
-func NewEmbassy(homeCountry string, hostCountry string, consulate bool, mapLink string, city string, googleID string, placeDetails PlaceDetails) *Embassy {
+func NewEmbassy(apiClient api.Client, homeCountry string, hostCountry string, consulate bool, mapLink string, city string, googleID string, placeDetails PlaceDetails) *Embassy {
 	return &Embassy{
+		ApiClient:    apiClient,
 		HomeCountry:  homeCountry,
 		HostCountry:  hostCountry,
 		Consulate:    consulate,
 		MapLink:      mapLink,
 		City:         city,
 		GoogleID:     googleID,
-		PlaceDetails: placeDetails,
+		PlaceDetails: &placeDetails,
 	}
 }
 

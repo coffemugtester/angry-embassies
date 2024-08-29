@@ -33,8 +33,7 @@ var getEmbassies = &cobra.Command{
 		test := "Hello, MongoDB!"
 		scndTest := "Hello, MongoDB! 2"
 
-		deps.MgoService.InsertDocument(test, scndTest)
-		// Print the formatted string
+		deps.MgoService.InsertDocument(*deps.ApiClient, test, scndTest)
 		fmt.Printf("Fetching embassies for Home Country: %s and Host Country: %s\n", home, host)
 	},
 }

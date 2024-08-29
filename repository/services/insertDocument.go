@@ -2,6 +2,7 @@ package services
 
 import (
 	"angry-embassies/models"
+	"api"
 	"repository/usecases"
 )
 
@@ -17,8 +18,13 @@ func NewMgoService(useCase usecases.PersistenceUseCase) *MgoService {
 	}
 }
 
-func (m *MgoService) InsertDocument(home, host string) (string, error) {
+func (m *MgoService) InsertDocument(apiClient api.Client, home, host string) (string, error) {
 
-	embassy := *models.NewEmbassy(home, host, false, "", "", "", models.PlaceDetails{})
+	embassy := *models.NewEmbassy(apiClient, home, host, false, "", "", "", models.PlaceDetails{})
+	//TODO: build placeQuery (embassy/consulate of home in city host)
+	embassy.ApiClient.GetGoogleID(embassy.HomeCountry)
+	//TODO: make GetPlaceDetails void
+	embassy.ApiClient.GetPlaceDetails(embassy.GoogleID)
+
 	return m.useCase.InsertDocument(embassy)
 }

@@ -54,9 +54,7 @@ func (c Client) GetGoogleID(placeQuery string) (id string) {
 	return id
 }
 
-func (c Client) GetPlaceDetails(placeID string) (models.PlaceDetails, error) {
-
-	var details models.PlaceDetails
+func (c Client) GetPlaceDetails(placeID string) (*models.PlaceDetails, error) {
 
 	mapsURL := "https://maps.googleapis.com/maps/api/place/details/json?fields=name,rating,opening_hours,website,address_components,adr_address,business_status,formatted_address,formatted_phone_number,geometry,rating,user_ratings_total,reviews,opening_hours,photos,current_opening_hours,editorial_summary,icon,icon_background_color,place_id,plus_code,secondary_opening_hours,types,url,website,wheelchair_accessible_entrance,international_phone_number&reviews_sort=newest&reviews_no_translations=true&place_id=" + placeID + "&key=" + c.apiKey
 
@@ -64,25 +62,26 @@ func (c Client) GetPlaceDetails(placeID string) (models.PlaceDetails, error) {
 
 	response, err := http.Get(mapsURL)
 	if err != nil {
-		return details, fmt.Errorf("error: %v", err)
+		return nil, fmt.Errorf("error: %v", err)
 	}
 	defer response.Body.Close()
 
 	body, err := io.ReadAll(response.Body)
 	if err != nil {
-		return details, fmt.Errorf("error: %v", err)
+		return nil, fmt.Errorf("error: %v", err)
 	}
 
 	if response.StatusCode != 200 {
-		return details, fmt.Errorf("error: %v", err)
+		return nil, fmt.Errorf("error: %v", err)
 	}
 
+	var details models.PlaceDetails
 	if err := json.Unmarshal(body, &details); err != nil {
 		// TODO: use a struct or a pointer so it can be null
-		return details, fmt.Errorf("error: %v", err)
+		return nil, fmt.Errorf("error: %v", err)
 	}
 
-	return details, nil
+	return &details, nil
 }
 
 // NewMapsClient creates a new mapz client

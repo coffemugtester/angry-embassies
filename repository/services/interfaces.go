@@ -1,5 +1,7 @@
 package services
 
+import "api"
+
 type RepositoryService interface {
-	InsertDocument(home, host string) (string, error)
+	InsertDocument(apiClient api.Client, home, host string) (string, error)
 }

@@ -2,6 +2,7 @@ package config
 
 import (
 	"angry-embassies/conf"
+	"api"
 	"fmt"
 	"repository/client"
 	"repository/services"
@@ -10,6 +11,7 @@ import (
 
 type Dependencies struct {
 	MgoService *services.MgoService
+	ApiClient  *api.Client
 }
 
 func InitDependencies() (Dependencies, error) {
@@ -20,11 +22,11 @@ func InitDependencies() (Dependencies, error) {
 	persistorClient := client.NewClient(cfg.Mgo)
 	fmt.Printf("PersistorClient created: %v\n", persistorClient)
 
-	//makerClient := api.NewClient(cfg.ApiKey)
-
 	mgoUseCase := *usecases.NewPersistenceUseCase(cfg.Mgo)
+	apiClient := api.NewClient(cfg.ApiKey)
 
 	return Dependencies{
 		MgoService: services.NewMgoService(mgoUseCase),
+		ApiClient:  apiClient,
 	}, nil
 }
