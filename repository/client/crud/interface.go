@@ -1,8 +1,8 @@
 package crud
 
 import (
-	"angry-embassies/conf"
-	"angry-embassies/models"
+	"angry_embassies/conf"
+	"angry_embassies/models"
 	"go.mongodb.org/mongo-driver/mongo"
 )
 

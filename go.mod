@@ -1,4 +1,4 @@
-module angry-embassies
+module angry_embassies
 
 go 1.22
 

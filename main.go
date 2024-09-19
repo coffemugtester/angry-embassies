@@ -1,7 +1,7 @@
 package main
 
 import (
-	"angry-embassies/config"
+	"angry_embassies/config"
 	"fmt"
 	"github.com/spf13/cobra"
 )
@@ -30,10 +30,14 @@ var getEmbassies = &cobra.Command{
 			return
 		}
 
-		test := "Hello, MongoDB!"
-		scndTest := "Hello, MongoDB! 2"
+		emb, err := deps.GglService.GetEmbassyDetails(home, host)
+		if err != nil {
+			fmt.Printf("deps.GglService.GetEmbassy error: %v\n", err)
+			return
+		}
 
-		deps.MgoService.InsertDocument(*deps.ApiClient, test, scndTest)
+		//pass emb to insertDocument
+		deps.MgoService.InsertDocument(emb)
 		fmt.Printf("Fetching embassies for Home Country: %s and Host Country: %s\n", home, host)
 	},
 }

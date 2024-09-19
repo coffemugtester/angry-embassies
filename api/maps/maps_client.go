@@ -1,7 +1,7 @@
 package maps
 
 import (
-	"angry-embassies/models"
+	"angry_embassies/models"
 	"encoding/json"
 	"fmt"
 	"io"
@@ -16,7 +16,7 @@ type Client struct {
 	apiKey string
 }
 
-func (c Client) GetGoogleID(placeQuery string) (id string) {
+func (c Client) GetGoogleID(placeQuery string) (string, error) {
 
 	placeQuery = url.QueryEscape(placeQuery)
 
@@ -30,13 +30,13 @@ func (c Client) GetGoogleID(placeQuery string) (id string) {
 
 	response, err := http.Get(mapsURL)
 	if err != nil {
-		return fmt.Sprintf("error: %v", err)
+		return "", fmt.Errorf("error: %v", err)
 	}
 	defer response.Body.Close()
 
 	body, err := io.ReadAll(response.Body)
 	if err != nil {
-		return fmt.Sprintf("error: %v", err)
+		return "", fmt.Errorf("error: %v", err)
 	}
 
 	var item struct {
@@ -46,12 +46,12 @@ func (c Client) GetGoogleID(placeQuery string) (id string) {
 	}
 
 	if err := json.Unmarshal(body, &item); err != nil {
-		return fmt.Sprintf("error: %v", err)
+		return "", fmt.Errorf("error: %v", err)
 	}
 
-	id = item.Candidates[0].PlaceID
+	id := item.Candidates[0].PlaceID
 
-	return id
+	return id, nil
 }
 
 func (c Client) GetPlaceDetails(placeID string) (*models.PlaceDetails, error) {

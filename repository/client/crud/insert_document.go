@@ -1,7 +1,7 @@
 package crud
 
 import (
-	"angry-embassies/models"
+	"angry_embassies/models"
 	"fmt"
 )
 

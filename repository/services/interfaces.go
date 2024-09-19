@@ -1,7 +1,7 @@
 package services
 
-import "api"
+import "angry_embassies/models"
 
 type RepositoryService interface {
-	InsertDocument(apiClient api.Client, home, host string) (string, error)
+	InsertDocument(embassy models.Embassy) (string, error)
 }

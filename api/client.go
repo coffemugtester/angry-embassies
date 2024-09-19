@@ -1,7 +1,7 @@
 package api
 
 import (
-	"angry-embassies/models"
+	"angry_embassies/models"
 	"api/maps"
 )
 
@@ -16,10 +16,10 @@ func NewClient(apiKey string) *Client {
 	}
 }
 
-func (c Client) GetGoogleID(placeQuery string) string {
+func (c Client) GetGoogleID(placeQuery string) (string, error) {
 	return c.Client.GetGoogleID(placeQuery)
 }
 
-func (c Client) GetPlaceDetails(placeQuery string) (*models.PlaceDetails, error) {
-	return c.Client.GetPlaceDetails(placeQuery)
+func (c Client) GetPlaceDetails(googleID string) (*models.PlaceDetails, error) {
+	return c.Client.GetPlaceDetails(googleID)
 }

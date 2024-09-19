@@ -6,7 +6,7 @@ https://www.amazon.de/-/en/Micro-Reader-Memory-External-RS-MMC-gray/dp/B087QG75L
 
 1 ssh access to the raspberry pi
 
-Automate CI/CD pipeline for the project (avoid using github actions for now):
+Automate CI/CD pipeline for the project (avoid using GitHub actions for now):
 
     pull the code *securely* from the repository
     check diffs

@@ -2,8 +2,9 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/angry-embassies.iml" filepath="$PROJECT_DIR$/angry-embassies.iml" />
+      <module fileurl="file://$PROJECT_DIR$/angry_embassies.iml" filepath="$PROJECT_DIR$/angry_embassies.iml" />
       <module fileurl="file://$PROJECT_DIR$/api.iml" filepath="$PROJECT_DIR$/api.iml" />
+      <module fileurl="file://$PROJECT_DIR$/embassy_sync.iml" filepath="$PROJECT_DIR$/embassy_sync.iml" />
       <module fileurl="file://$PROJECT_DIR$/repository.iml" filepath="$PROJECT_DIR$/repository.iml" />
     </modules>
   </component>

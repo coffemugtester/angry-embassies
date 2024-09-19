@@ -1,8 +1,8 @@
 package client
 
 import (
-	"angry-embassies/conf"
-	"angry-embassies/models"
+	"angry_embassies/conf"
+	"angry_embassies/models"
 	"repository/client/crud"
 )
 
