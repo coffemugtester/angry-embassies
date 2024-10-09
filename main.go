@@ -30,6 +30,8 @@ var getEmbassies = &cobra.Command{
 			return
 		}
 
+		//TODO: configs get google service to get embassy details
+		//TODO: how can I test it , or test different configs
 		emb, err := deps.GglService.GetEmbassyDetails(home, host)
 		if err != nil {
 			fmt.Printf("deps.GglService.GetEmbassy error: %v\n", err)
