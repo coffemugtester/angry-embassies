@@ -11,9 +11,9 @@ Automate CI/CD pipeline for the project (avoid using GitHub actions for now):
 
     [x] install go on the raspberry pi
     [x] install docker on the raspberry pi
-    run the service in a docker container on the raspberry pi
+    [x] run the service in a docker container on the raspberry pi
     write cron job to check for changes in the repository
-    write a script to rebuild the docker image and launch the service
+    write a script/use jenkins to run tests and rebuild the docker image and launch the service
 
     pull the code *securely* from the repository
     check diffs
