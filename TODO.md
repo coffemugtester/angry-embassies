@@ -1,5 +1,4 @@
 # TODO:
-test cron job
 
 
 [x] install raspberry pi os on the sd card
