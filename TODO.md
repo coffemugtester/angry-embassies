@@ -1,5 +1,5 @@
 # TODO:
-
+test change
 
 [x] install raspberry pi os on the sd card
 https://www.amazon.de/-/en/Micro-Reader-Memory-External-RS-MMC-gray/dp/B087QG75L7/ref=sr_1_1?crid=ZIVFZD8J3K0K&dib=eyJ2IjoiMSJ9.fRdmcvVUMsaRIuRv_VsJE8dAEL03mbsBy0Gy8Djq1DY6-63rz84YcZn43CDur4iVthUePRzsumYJ2Ymty7rA3JVg-KThSmAl5vCI9uhoEl16hvMwzOOg2DlKShFH_XvNBSe3kBwx-FAXcf5zWIEGIfB1sVHxwRE3jG_3fcvv7iN-zGExME8Heg-veYUJrU1LUgRXSAXWVroszUCSh3e7xGtwqA37eiaHgYN2r8OWclY.7EH6gPLfeNiXeIkv0QzYoJUtIH8dyP0K8YGtb18J7Zc&dib_tag=se&keywords=usb+sdcard&qid=1724681407&sprefix=usb+sdcar%2Caps%2C108&sr=8-1
