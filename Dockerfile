@@ -11,6 +11,8 @@ RUN go mod download
 
 #Step 3: Copy your Go project files to the container
 COPY . .
+RUN sh "pwd"
+RUN sh "ls -R ."
 
 #Step 4: Download dependencies
 RUN go mod tidy
