@@ -8,7 +8,6 @@ WORKDIR /app
 # Copy the go.mod and go.sum files first to leverage Docker cache
 COPY go.mod go.sum ./
 RUN go mod download
-COPY conf/local.yaml app/conf/local.yaml
 
 #Step 3: Copy your Go project files to the container
 COPY . .
