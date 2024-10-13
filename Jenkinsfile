@@ -11,7 +11,7 @@ pipeline {
         }
         stage('Build Docker Image') {
             steps {
-                    script {
+                    dir('$HOME/projects/angry-embassies') {
                         // Build the Docker image
                         sh "docker build -t angry/runner:latest ."
                     }
