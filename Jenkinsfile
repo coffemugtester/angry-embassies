@@ -8,14 +8,18 @@ pipeline {
                 // Optionally, you can print an additional message to confirm execution
                 echo 'This is the Say Hello stage.'
                 sh 'ls -R /var/lib/jenkins/workspace/angry-embassies'
-                echo 'ls -R /var/lib/jenkins/workspace/angry-embassies'
             }
         }
         stage('Build Docker Image') {
             steps {
                     script {
                         // Build the Docker image
+                        withCredentials([file(credentialsId: '5c7ba7fc-863a-47a5-98ab-bd35b2d48d67', variable: 'LOCAL_YAML')]) {
+                            sh "cp $LOCAL_YAML ./conf/local.yaml"
+                        }
                         sh "docker build -t angry/runner:latest ."
+                        echo 'This is the Say Hello stage.'
+                        sh 'ls -R /var/lib/jenkins/workspace/angry-embassies'
                     }
                 }
             }
