@@ -32,4 +32,4 @@ COPY --from=build /app/myapp .
 #EXPOSE 8080
 
 #Step 10: Run the Go application
-CMD ["./myapp"]
+CMD ["tail", "-f", "/dev/null"]
