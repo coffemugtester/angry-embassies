@@ -8,12 +8,10 @@ WORKDIR /app
 # Copy the go.mod and go.sum files first to leverage Docker cache
 COPY go.mod go.sum ./
 RUN go mod download
+COPY /app/conf/local.yaml ./conf/local.yaml
 
 #Step 3: Copy your Go project files to the container
 COPY . .
-RUN pwd && echo "Current working directory printed."
-
-RUN pwd && sh "ls -R ."
 
 #Step 4: Download dependencies
 RUN go mod tidy
@@ -30,7 +28,6 @@ WORKDIR /app
 #Step 8: Copy the binary from the build stage to this stage
 COPY --from=build /app/myapp .
 
-COPY ./conf/local.yaml /app/conf/local.yaml
 
 #Step 9: Expose the application port (if needed)
 #EXPOSE 8080
