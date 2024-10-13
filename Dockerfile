@@ -28,7 +28,7 @@ WORKDIR /app
 COPY --from=build /app/myapp .
 
 # Copy the configuration file to the correct location
-COPY ./conf/local.yaml app/conf/local.yaml
+COPY conf/local.yaml ./conf/local.yaml
 
 #Step 9: Expose the application port (if needed)
 #EXPOSE 8080
