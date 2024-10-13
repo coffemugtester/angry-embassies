@@ -7,6 +7,8 @@ pipeline {
                 echo 'Hello world!'
                 // Optionally, you can print an additional message to confirm execution
                 echo 'This is the Say Hello stage.'
+                sh 'ls -R /var/lib/jenkins/workspace/angry-embassies'
+                echo 'ls -R /var/lib/jenkins/workspace/angry-embassies'
             }
         }
         stage('Build Docker Image') {
