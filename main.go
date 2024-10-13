@@ -79,5 +79,5 @@ func main() {
 	//	return
 	//}
 	//
-	fmt.Println("Hello, GoLand!")
+	fmt.Println("Hello, GoLand! Now with Docker!")
 }
