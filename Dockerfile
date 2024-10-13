@@ -27,6 +27,7 @@ WORKDIR /app
 
 #Step 8: Copy the binary from the build stage to this stage
 COPY --from=build /app/myapp .
+COPY --from=build /app/conf/local.yaml ./conf/local.yaml
 
 
 #Step 9: Expose the application port (if needed)
