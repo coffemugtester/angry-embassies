@@ -24,6 +24,7 @@ var getEmbassies = &cobra.Command{
 
 		fmt.Println("Dependencies initialized")
 
+		// TODO: Initialize dependencies in the main function
 		deps, err := config.InitDependencies()
 		if err != nil {
 			fmt.Printf("config.InitDependencies error: %v\n", err)
@@ -42,9 +43,11 @@ var getEmbassies = &cobra.Command{
 		deps.MgoService.InsertDocument(emb)
 		fmt.Printf("Fetching embassies for Home Country: %s and Host Country: %s\n", home, host)
 	},
+	//	TODO: Make new package for cli that starts on a Run method
 }
 
 func init() {
+	// TODO: wrap this in a Setup function; no need for using init()
 	fmt.Println("Initializing Cobra CLI")
 	rootCmd.AddCommand(getEmbassies)
 
@@ -59,25 +62,11 @@ func init() {
 
 func main() {
 
+	// TODO: How to run the CLI in parallel with the web server?
 	if err := rootCmd.Execute(); err != nil {
 		fmt.Println(err)
 		return
 	}
 
-	//deps, err := config.InitDependencies()
-	//if err != nil {
-	//	fmt.Printf("config.InitDependencies error: %v\n", err)
-	//	return
-	//}
-	//
-	//googleID := deps.MakerClient.GetGoogleID("Spain Embassy in Berlin")
-	//fmt.Printf("Google ID: %v\n", googleID)
-	//
-	//document, err := deps.PersistorClient.InsertDocument("Hello, MongoDB!")
-	//if err != nil {
-	//	fmt.Printf("deps.PersistorClient.InsertDocument error: %v\n", err)
-	//	return
-	//}
-	//
 	fmt.Println("Hello, GoLand! Now with the latest Docker!")
 }
