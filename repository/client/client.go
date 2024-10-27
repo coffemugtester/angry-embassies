@@ -20,3 +20,7 @@ func NewClient(mgo conf.MgoConfig) *Client {
 func (c Client) InsertDocument(document models.Embassy) (string, error) {
 	return crud.InsertDocument(c.Client, document)
 }
+
+func (c Client) GetDocument(document models.Embassy) (models.Embassy, error) {
+	return crud.GetDocument(c.Client, document)
+}

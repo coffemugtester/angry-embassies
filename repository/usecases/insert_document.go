@@ -22,3 +22,7 @@ func NewPersistenceUseCase(mgoConf conf.MgoConfig) *PersistenceUseCase {
 func (p *PersistenceUseCase) InsertDocument(document models.Embassy) (string, error) {
 	return p.client.InsertDocument(document)
 }
+
+func (p *PersistenceUseCase) GetDocument(document models.Embassy) (models.Embassy, error) {
+	return p.client.GetDocument(document)
+}
