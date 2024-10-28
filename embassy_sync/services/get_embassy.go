@@ -16,14 +16,14 @@ func NewEmbassyService(gglUsecase usecases.EmbassyUsecase) *EmbassyService {
 		gglUsecase: gglUsecase,
 	}
 }
-func (e *EmbassyService) GetEmbassyDetails(home, host string) (models.Embassy, error) {
-	embassy, err := e.GetEmbassy(home, host)
+func (e *EmbassyService) GetEmbassyDetails(embassy models.Embassy) (models.Embassy, error) {
+	embassy, err := e.GetEmbassy(embassy)
 	if err != nil {
 		return models.Embassy{}, err
 	}
 	return e.gglUsecase.GetEmbassyDetails(embassy), nil
 }
 
-func (e *EmbassyService) GetEmbassy(home, host string) (models.Embassy, error) {
-	return e.gglUsecase.GetEmbassy(e.gglUsecase.ApiClient, home, host)
+func (e *EmbassyService) GetEmbassy(embassy models.Embassy) (models.Embassy, error) {
+	return e.gglUsecase.GetEmbassy(e.gglUsecase.ApiClient, embassy)
 }

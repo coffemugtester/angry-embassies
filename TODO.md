@@ -1,7 +1,5 @@
 # TODO:
 
-[x] Extract initialization of dependencies out of the CLI setup and initialize the app properly
-
 [] Populate all Spanish embassies properly (tweak the input process)
 
 [] Make cmd directory; should contain 2 modules api-server and cli
@@ -16,6 +14,8 @@
     - services
     - usecases
     - repository
+
+[x] Extract initialization of dependencies out of the CLI setup and initialize the app properly
 
 
 [x] install raspberry pi os on the sd card

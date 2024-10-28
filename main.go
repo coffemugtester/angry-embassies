@@ -2,6 +2,7 @@ package main
 
 import (
 	"angry_embassies/config"
+	"angry_embassies/models"
 	"fmt"
 	"github.com/spf13/cobra"
 )
@@ -49,11 +50,15 @@ func registerCommands(deps *config.Dependencies) (cmds cliCommands) {
 		// Retrieve the values of the flags
 		home, _ := cmd.Flags().GetString("home")
 		host, _ := cmd.Flags().GetString("host")
+		consulate, _ := cmd.Flags().GetBool("consulate")
+		city, _ := cmd.Flags().GetString("city")
+
+		embassy := *models.NewEmbassy(home, host, consulate, "", city, "", models.PlaceDetails{})
 
 		fmt.Println("Dependencies initialized")
 		//TODO: configs get google service to get embassy details
 		//TODO: how can I test it , or test different configs
-		emb, err := deps.GglService.GetEmbassyDetails(home, host)
+		emb, err := deps.GglService.GetEmbassyDetails(embassy)
 		if err != nil {
 			fmt.Printf("deps.GglService.GetEmbassy error: %v\n", err)
 			return
@@ -84,10 +89,14 @@ func init() {
 	// Register flags
 	cmds.getEmbassies.Flags().String("home", "", "Home country")
 	cmds.getEmbassies.Flags().String("host", "", "Host country")
+	cmds.getEmbassies.Flags().Bool("consulate", false, "Is this a consulate?")
+	cmds.getEmbassies.Flags().String("city", "", "City")
 
 	// Mark flags as required if needed
 	cmds.getEmbassies.MarkFlagRequired("home")
 	cmds.getEmbassies.MarkFlagRequired("host")
+	cmds.getEmbassies.MarkFlagRequired("consulate")
+	cmds.getEmbassies.MarkFlagRequired("city")
 }
 
 func main() {

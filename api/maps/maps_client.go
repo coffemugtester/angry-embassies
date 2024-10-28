@@ -6,7 +6,6 @@ import (
 	"fmt"
 	"io"
 	"net/http"
-	"net/url"
 )
 
 var _ ClientInterface = (*Client)(nil)
@@ -17,8 +16,6 @@ type Client struct {
 }
 
 func (c Client) GetGoogleID(placeQuery string) (string, error) {
-
-	placeQuery = url.QueryEscape(placeQuery)
 
 	mapsURL := "https://maps.googleapis.com/maps/api/place/findplacefromtext/json?input=" + placeQuery + "&inputtype=textquery&fields=place_id&key=" + c.apiKey
 
