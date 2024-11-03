@@ -18,20 +18,6 @@ var rootCmd = &cobra.Command{
 	Long:  "This application demonstrates passing parameters through the terminal using Cobra.",
 }
 
-//var run = &cobra.Command{
-//	Use: "serve",
-//	Run: func(cmd *cobra.Command, args []string) {
-//		fmt.Println("Running the application")
-//		http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
-//			fmt.Fprintf(w, "Hello, GoLand! Now with the latest Docker!")
-//		})
-//		http.HandleFunc("/getembassies", func(w http.ResponseWriter, r *http.Request) {
-//			fmt.Fprintf(w, "Fetching embassies for Home Country: %s and Host Country: %s\n", "spain", "france")
-//		})
-//		http.ListenAndServe(":8080", nil)
-//	},
-//}
-
 // TODO: make this return a struct with all commands
 func registerCommands(deps *config.Dependencies) (cmds cliCommands) {
 	var getEmbassies = &cobra.Command{

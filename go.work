@@ -6,7 +6,7 @@ use (
 	./cmd/internal/api
 	./cmd/internal/embassy_sync
 	./cmd/internal/repository
-	./cmd/internal/conftest
-	./cmd/internal/configtest
+	./cmd/internal/conf
+	./cmd/internal/init_config
 	./cmd/internal/models
 )

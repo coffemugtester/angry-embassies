@@ -1,7 +1,7 @@
-package config
+package init_config
 
 import (
-	"conftest"
+	"conf"
 	embs "embassy_sync/services"
 	emb "embassy_sync/usecases"
 	"fmt"
@@ -17,7 +17,7 @@ type Dependencies struct {
 
 func InitDependencies() (Dependencies, error) {
 
-	cfg := conftest.LoadConfig()
+	cfg := conf.LoadConfig()
 	fmt.Printf("Config loaded: %v\n", cfg)
 
 	persistorClient := client.NewClient(cfg.Mgo)

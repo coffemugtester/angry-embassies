@@ -1,17 +1,10 @@
 # TODO:
 
-[] Make cmd directory; should contain 2 modules api-server and cli
-- cmd
-  - api-server
-    - main.go 
-  - cli (embassy_sync for now)
-    - main.go
-  - internal
-    - config
-    - models
-    - services
-    - usecases
-    - repository
+[] Add a server
+
+[] Add read method to the repository
+
+[x] Make cmd directory; should contain 2 modules api-server and cli
 
 [x] Populate all Spanish embassies properly (tweak the input process)
 

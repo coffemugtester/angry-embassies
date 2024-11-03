@@ -1,4 +1,4 @@
-module conftest
+module conf
 
 go 1.22.5
 
