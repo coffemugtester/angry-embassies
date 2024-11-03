@@ -3,10 +3,10 @@ go 1.22.5
 use (
 	.
 	./cmd/cli
-	./internal/api
-	./internal/embassy_sync
-	./internal/repository
-	./internal/conftest
-	./internal/configtest
-	./internal/models
+	./cmd/internal/api
+	./cmd/internal/embassy_sync
+	./cmd/internal/repository
+	./cmd/internal/conftest
+	./cmd/internal/configtest
+	./cmd/internal/models
 )
