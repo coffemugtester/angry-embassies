@@ -3,7 +3,7 @@
   <component name="Go" enabled="true" />
   <component name="NewModuleRootManager" inherit-compiler-output="true">
     <exclude-output />
-    <content url="file://$MODULE_DIR$/repository" />
+    <content url="file://$MODULE_DIR$/internal/repository" />
     <orderEntry type="sourceFolder" forTests="false" />
   </component>
 </module>

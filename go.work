@@ -1,8 +1,12 @@
-go 1.22
+go 1.22.5
 
 use (
 	.
-	api
-	repository
-	embassy_sync
+	./cmd/cli
+	./internal/api
+	./internal/embassy_sync
+	./internal/repository
+	./internal/conftest
+	./internal/configtest
+	./internal/models
 )

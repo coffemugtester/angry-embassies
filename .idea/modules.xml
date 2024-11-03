@@ -4,6 +4,8 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/angry_embassies.iml" filepath="$PROJECT_DIR$/angry_embassies.iml" />
       <module fileurl="file://$PROJECT_DIR$/api.iml" filepath="$PROJECT_DIR$/api.iml" />
+      <module fileurl="file://$PROJECT_DIR$/api-server.iml" filepath="$PROJECT_DIR$/api-server.iml" />
+      <module fileurl="file://$PROJECT_DIR$/cli.iml" filepath="$PROJECT_DIR$/cli.iml" />
       <module fileurl="file://$PROJECT_DIR$/embassy_sync.iml" filepath="$PROJECT_DIR$/embassy_sync.iml" />
       <module fileurl="file://$PROJECT_DIR$/repository.iml" filepath="$PROJECT_DIR$/repository.iml" />
     </modules>

@@ -1,10 +1,10 @@
 package main
 
 import (
-	"angry_embassies/config"
-	"angry_embassies/internal/models"
+	config "configtest"
 	"fmt"
 	"github.com/spf13/cobra"
+	"models"
 )
 
 type cliCommands struct {
