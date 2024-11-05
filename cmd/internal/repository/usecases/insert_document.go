@@ -1,7 +1,7 @@
 package usecases
 
 import (
-	"conftest"
+	"conf"
 	"models"
 	"repository/client"
 )
@@ -12,7 +12,7 @@ type PersistenceUseCase struct {
 	client client.Client
 }
 
-func NewPersistenceUseCase(mgoConf conftest.MgoConfig) *PersistenceUseCase {
+func NewPersistenceUseCase(mgoConf conf.MgoConfig) *PersistenceUseCase {
 	client := *client.NewClient(mgoConf)
 	return &PersistenceUseCase{
 		client,

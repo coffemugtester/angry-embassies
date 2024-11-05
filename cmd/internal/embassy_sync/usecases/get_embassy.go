@@ -2,7 +2,6 @@ package usecases
 
 import (
 	"api"
-	"conftest"
 	"fmt"
 	"models"
 	"net/url"
@@ -22,12 +21,6 @@ func NewEmbassyUsecase(apiKey string) *EmbassyUsecase {
 }
 
 func (*EmbassyUsecase) GetEmbassy(gClient api.Client, embassy models.Embassy) (models.Embassy, error) {
-	x := conftest.Config{
-		ApiKey: "",
-		Domain: "",
-		Mgo:    conftest.MgoConfig{},
-	}
-	fmt.Println(x)
 	var placeQuery string
 
 	//TODO: pass complete embassy

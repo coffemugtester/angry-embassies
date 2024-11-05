@@ -1,7 +1,7 @@
 package client
 
 import (
-	"conftest"
+	"conf"
 	"models"
 	"repository/client/crud"
 )
@@ -10,7 +10,7 @@ type Client struct {
 	*crud.Client
 }
 
-func NewClient(mgo conftest.MgoConfig) *Client {
+func NewClient(mgo conf.MgoConfig) *Client {
 	crudClient := crud.NewCRUDClient(mgo, crud.MongoImpl{})
 	return &Client{
 		crudClient,

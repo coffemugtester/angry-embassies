@@ -2,6 +2,7 @@ go 1.22.5
 
 use (
 	.
+	./cmd/api-server
 	./cmd/cli
 	./cmd/internal/api
 	./cmd/internal/embassy_sync

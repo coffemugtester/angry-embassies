@@ -1,7 +1,7 @@
 package crud
 
 import (
-	"conftest"
+	"conf"
 	"context"
 	"fmt"
 	"go.mongodb.org/mongo-driver/mongo"
@@ -16,7 +16,7 @@ type MongoImpl struct {
 	collection *mongo.Collection
 }
 
-func (t MongoImpl) Connect(mgoConf conftest.MgoConfig) (*mongo.Client, error) {
+func (t MongoImpl) Connect(mgoConf conf.MgoConfig) (*mongo.Client, error) {
 
 	client, err := mongo.Connect(context.TODO(), options.Client().ApplyURI(mgoConf.MongoUri))
 	if err != nil {
@@ -71,7 +71,7 @@ type Client struct {
 	mongoImpl     MongoClient
 }
 
-func NewCRUDClient(mgoConf conftest.MgoConfig, mongoImpl MongoImpl) *Client {
+func NewCRUDClient(mgoConf conf.MgoConfig, mongoImpl MongoImpl) *Client {
 
 	fmt.Printf("Creating new CRUD client with config: %v\n", mgoConf)
 

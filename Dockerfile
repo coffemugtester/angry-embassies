@@ -16,7 +16,8 @@ COPY . .
 RUN go mod tidy
 
 #Step 5: Build the Go binary
-RUN go build -o myapp .
+RUN go build -o cmd/cli ./cmd/cli
+RUN go build -o cmd/api-server ./cmd/api-server
 
 #Step 6: Use a lightweight image to run the binary
 FROM golang:1.23.2-alpine
@@ -25,10 +26,11 @@ FROM golang:1.23.2-alpine
 WORKDIR /app
 
 #Step 8: Copy the binary from the build stage to this stage
-COPY --from=build /app/myapp .
+COPY --from=build /app/cmd/cli .
+COPY --from=build /app/cmd/api-server .
 
 # Copy the configuration file to the correct location
-COPY conf/local.yaml ./conf/local.yaml
+COPY conf/local.yaml ./internal/conf/local.yaml
 
 #Step 9: Expose the application port (if needed)
 #EXPOSE 8080
