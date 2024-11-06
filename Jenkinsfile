@@ -13,9 +13,9 @@ pipeline {
             steps {
                     script {
                         // Build the Docker image
-                        withCredentials([file(credentialsId: '5c7ba7fc-863a-47a5-98ab-bd35b2d48d67', variable: 'LOCAL_YAML')]) {
-                            sh "cp $LOCAL_YAML ./internal/conf/local.yaml"
-                        }
+                        //withCredentials([file(credentialsId: '5c7ba7fc-863a-47a5-98ab-bd35b2d48d67', variable: 'LOCAL_YAML')]) {
+                        //    sh "cp $LOCAL_YAML ./internal/conf/local.yaml"
+                        //}
                         sh 'docker build -t angry/runner .'
                     }
                 }
