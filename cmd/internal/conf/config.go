@@ -20,6 +20,7 @@ type Config struct {
 func LoadConfig() Config {
 	var config Config
 
+	viper.AddConfigPath("../internal/conf") // look for config in the working directory
 	viper.AddConfigPath("./internal/conf") // look for config in the working directory
 	viper.SetConfigName("local")
 	viper.SetConfigType("yaml")
