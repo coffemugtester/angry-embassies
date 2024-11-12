@@ -11,4 +11,5 @@ type MongoClient interface {
 	Ping() error
 	Collection(nameDB, nameCollection string) *mongo.Collection
 	InsertOne(document models.Embassy) (string, error)
+	FindOne(document models.Embassy) (models.Embassy, error)
 }

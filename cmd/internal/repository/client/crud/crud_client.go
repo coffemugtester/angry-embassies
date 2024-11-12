@@ -4,6 +4,7 @@ import (
 	"conf"
 	"context"
 	"fmt"
+	"go.mongodb.org/mongo-driver/bson"
 	"go.mongodb.org/mongo-driver/mongo"
 	"go.mongodb.org/mongo-driver/mongo/options"
 	"models"
@@ -51,16 +52,26 @@ func (t MongoImpl) InsertOne(document models.Embassy) (string, error) {
 }
 
 func (t MongoImpl) FindOne(document models.Embassy) (models.Embassy, error) {
+
+	filter := bson.M{
+		"home_country": document.HomeCountry,
+		"host_country": document.HostCountry,
+		"city":         document.City,
+	}
+
 	var embassy models.Embassy
 
 	//The filter parameter must be a document containing query operators and can be used to select the document to be returned.
 	//It cannot be nil. If the filter does not match any documents, a SingleResult with an error set to ErrNoDocuments will be returned.
 	//If the filter matches multiple documents, one will be selected from the matched set.
-	err := t.collection.FindOne(context.TODO(), document).Decode(&embassy)
+	err := t.collection.FindOne(context.TODO(), filter).Decode(&embassy)
 	if err != nil {
-		fmt.Printf("Error finding document: %v", err)
+		fmt.Printf("Error finding document: %v\n", err)
 		return models.Embassy{}, err
 	}
+
+	fmt.Println("Embassy found: ", embassy)
+	fmt.Println("Embassy place details: ", *embassy.PlaceDetails)
 
 	return embassy, nil
 }

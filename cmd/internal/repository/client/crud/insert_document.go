@@ -8,8 +8,6 @@ import (
 func InsertDocument(client *Client, document models.Embassy) (string, error) {
 	fmt.Printf("Inserting document: %v\n", document)
 
-	client.mongoImpl.Collection(client.mgoDB, client.mgoCollection)
-
 	insertedDoc, err := client.mongoImpl.InsertOne(document)
 	if err != nil {
 		return "", err
@@ -21,8 +19,10 @@ func InsertDocument(client *Client, document models.Embassy) (string, error) {
 func GetDocument(client *Client, document models.Embassy) (models.Embassy, error) {
 	fmt.Printf("Getting document: %v\n", document)
 
-	client.mongoImpl.Collection(client.mgoDB, client.mgoCollection)
+	retrievedDoc, err := client.mongoImpl.FindOne(document)
+	if err != nil {
+		return models.Embassy{}, err
+	}
 
-	return models.Embassy{}, nil
-	//doc, err := client.mongoImpl.FindOne(document
+	return retrievedDoc, nil
 }

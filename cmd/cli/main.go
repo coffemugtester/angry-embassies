@@ -8,8 +8,8 @@ import (
 )
 
 type cliCommands struct {
-	getEmbassies *cobra.Command
-	test         *cobra.Command
+	writeEmbassy *cobra.Command
+	getEmbassy   *cobra.Command
 }
 
 var rootCmd = &cobra.Command{
@@ -20,18 +20,36 @@ var rootCmd = &cobra.Command{
 
 // TODO: make this return a struct with all commands
 func registerCommands(deps *config.Dependencies) (cmds cliCommands) {
-	var getEmbassies = &cobra.Command{
-		Use:   "getembassies",
-		Short: "Fetch embassies for a given home and host country",
+	var writeEmbassy = &cobra.Command{
+		Use:   "writeembassy",
+		Short: "Write embassies to the database",
 		Long:  "This command takes two parameters and passes them to the handler function.",
 		//	TODO: Make new package for cli that starts on a Run method
 	}
-	cmds.getEmbassies = getEmbassies
-	cmds.test = &cobra.Command{
-		Use: "test",
+	cmds.writeEmbassy = writeEmbassy
+
+	var getEmbassy = &cobra.Command{
+		Use:   "getembassy",
+		Short: "Retrieve embassy from the database",
+		Long:  "This command retrieves an embassy from the database",
 	}
 
-	getEmbassies.Run = func(cmd *cobra.Command, args []string) {
+	cmds.getEmbassy = getEmbassy
+
+	getEmbassy.Run = func(cmd *cobra.Command, args []string) {
+		// Retrieve the values of the flags
+		home, _ := cmd.Flags().GetString("home")
+		host, _ := cmd.Flags().GetString("host")
+		city, _ := cmd.Flags().GetString("city")
+
+		deps.MgoService.GetDocument(models.Embassy{
+			HomeCountry: home,
+			HostCountry: host,
+			City:        city,
+		})
+	}
+
+	writeEmbassy.Run = func(cmd *cobra.Command, args []string) {
 
 		// Retrieve the values of the flags
 		home, _ := cmd.Flags().GetString("home")
@@ -70,19 +88,24 @@ func init() {
 	cmds := registerCommands(&deps)
 
 	fmt.Println("Initializing Cobra CLI")
-	rootCmd.AddCommand(cmds.getEmbassies)
+	rootCmd.AddCommand(cmds.writeEmbassy)
 
 	// Register flags
-	cmds.getEmbassies.Flags().String("home", "", "Home country")
-	cmds.getEmbassies.Flags().String("host", "", "Host country")
-	cmds.getEmbassies.Flags().Bool("consulate", false, "Is this a consulate?")
-	cmds.getEmbassies.Flags().String("city", "", "City")
+	cmds.writeEmbassy.Flags().String("home", "", "Home country")
+	cmds.writeEmbassy.Flags().String("host", "", "Host country")
+	cmds.writeEmbassy.Flags().Bool("consulate", false, "Is this a consulate?")
+	cmds.writeEmbassy.Flags().String("city", "", "City")
 
 	// Mark flags as required if needed
-	cmds.getEmbassies.MarkFlagRequired("home")
-	cmds.getEmbassies.MarkFlagRequired("host")
-	cmds.getEmbassies.MarkFlagRequired("consulate")
-	cmds.getEmbassies.MarkFlagRequired("city")
+	cmds.writeEmbassy.MarkFlagRequired("home")
+	cmds.writeEmbassy.MarkFlagRequired("host")
+	cmds.writeEmbassy.MarkFlagRequired("consulate")
+	cmds.writeEmbassy.MarkFlagRequired("city")
+
+	rootCmd.AddCommand(cmds.getEmbassy)
+	cmds.getEmbassy.Flags().String("home", "", "Home country")
+	cmds.getEmbassy.Flags().String("host", "", "Host country")
+	cmds.getEmbassy.Flags().String("city", "", "City")
 }
 
 func main() {
