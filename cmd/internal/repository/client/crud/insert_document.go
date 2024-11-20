@@ -16,8 +16,9 @@ func InsertDocument(client *Client, document models.Embassy) (string, error) {
 	return insertedDoc, nil
 }
 
+// TODO: Implement GetDocuments
+
 func GetDocument(client *Client, document models.Embassy) (models.Embassy, error) {
-	fmt.Printf("Getting document: %v\n", document)
 
 	retrievedDoc, err := client.mongoImpl.FindOne(document)
 	if err != nil {

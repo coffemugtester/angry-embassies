@@ -78,6 +78,7 @@ func registerCommands(deps *config.Dependencies) (cmds cliCommands) {
 
 func init() {
 	// TODO: wrap this in a Setup function; no need for using init()
+	// TODO: decouple initialization from the cli package so that it can be used in the web server as well
 	// Initialize dependencies in the main function
 	deps, err := config.InitDependencies()
 	if err != nil {
