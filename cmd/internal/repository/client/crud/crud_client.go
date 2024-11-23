@@ -51,6 +51,47 @@ func (t MongoImpl) InsertOne(document models.Embassy) (string, error) {
 	return fmt.Sprintf("%v", id), nil
 }
 
+func (t MongoImpl) FindMany(document models.Embassy) ([]models.Embassy, error) {
+
+	data := map[string]interface{}{
+		"home_country": document.HomeCountry,
+	}
+
+	if document.HostCountry != "" {
+		data["host_country"] = document.HostCountry
+	}
+
+	bsonData, err := bson.Marshal(data)
+	if err != nil {
+		fmt.Printf("Error marshalling data: %v\n", err)
+		return nil, err
+	}
+
+	var filter bson.M
+	err = bson.Unmarshal(bsonData, &filter)
+
+	var embassy []models.Embassy
+
+	curs, colError := t.collection.Find(context.TODO(), filter)
+	if colError != nil {
+		fmt.Printf("Error finding document: %v\n", err)
+		return []models.Embassy{}, err
+	}
+
+	for curs.Next(context.Background()) {
+		var emb models.Embassy
+		err := curs.Decode(&emb)
+		if err != nil {
+			fmt.Printf("Error decoding document: %v\n", err)
+			return []models.Embassy{}, err
+		}
+		embassy = append(embassy, emb)
+	}
+	fmt.Println("Embassy found: ", embassy)
+
+	return embassy, nil
+}
+
 func (t MongoImpl) FindOne(document models.Embassy) (models.Embassy, error) {
 
 	filter := bson.M{

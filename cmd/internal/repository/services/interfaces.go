@@ -7,4 +7,5 @@ import (
 type RepositoryService interface {
 	InsertDocument(embassy models.Embassy) (string, error)
 	GetDocument(embassy models.Embassy) (models.Embassy, error)
+	GetDocuments(embassy models.Embassy) ([]models.Embassy, error)
 }

@@ -24,3 +24,7 @@ func (m *MgoService) InsertDocument(embassy models.Embassy) (string, error) {
 func (m *MgoService) GetDocument(embassy models.Embassy) (models.Embassy, error) {
 	return m.useCase.GetDocument(embassy)
 }
+
+func (m *MgoService) GetDocuments(embassy models.Embassy) ([]models.Embassy, error) {
+	return m.useCase.GetDocuments(embassy)
+}

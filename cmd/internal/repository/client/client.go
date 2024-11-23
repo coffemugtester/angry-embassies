@@ -24,3 +24,7 @@ func (c Client) InsertDocument(document models.Embassy) (string, error) {
 func (c Client) GetDocument(document models.Embassy) (models.Embassy, error) {
 	return crud.GetDocument(c.Client, document)
 }
+
+func (c Client) GetDocuments(document models.Embassy) ([]models.Embassy, error) {
+	return crud.GetDocuments(c.Client, document)
+}

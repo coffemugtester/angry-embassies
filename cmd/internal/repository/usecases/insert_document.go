@@ -26,3 +26,7 @@ func (p *PersistenceUseCase) InsertDocument(document models.Embassy) (string, er
 func (p *PersistenceUseCase) GetDocument(document models.Embassy) (models.Embassy, error) {
 	return p.client.GetDocument(document)
 }
+
+func (p *PersistenceUseCase) GetDocuments(document models.Embassy) ([]models.Embassy, error) {
+	return p.client.GetDocuments(document)
+}

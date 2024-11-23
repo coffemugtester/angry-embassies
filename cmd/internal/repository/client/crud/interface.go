@@ -12,4 +12,5 @@ type MongoClient interface {
 	Collection(nameDB, nameCollection string) *mongo.Collection
 	InsertOne(document models.Embassy) (string, error)
 	FindOne(document models.Embassy) (models.Embassy, error)
+	FindMany(document models.Embassy) ([]models.Embassy, error)
 }

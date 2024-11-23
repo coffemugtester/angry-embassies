@@ -27,3 +27,13 @@ func GetDocument(client *Client, document models.Embassy) (models.Embassy, error
 
 	return retrievedDoc, nil
 }
+
+func GetDocuments(client *Client, document models.Embassy) ([]models.Embassy, error) {
+
+	retrievedDocs, err := client.mongoImpl.FindMany(document)
+	if err != nil {
+		return []models.Embassy{}, err
+	}
+
+	return retrievedDocs, nil
+}

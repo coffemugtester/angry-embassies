@@ -25,6 +25,26 @@ func main() {
 
 	r := gin.Default()
 	// TODO: item page - missions/country
+	r.GET("/missions/:homeCountry", func(c *gin.Context) {
+		homeCountry := c.Param("homeCountry")
+
+		// Call the service to get the embassies
+		// TODO: add GetDocuments method to get all embassies for a country
+		mgoResult, err := mgoService.GetDocuments(models.Embassy{
+			HomeCountry: homeCountry,
+		})
+		if err != nil {
+			c.JSON(500, gin.H{
+				// TODO: not exposing the error message to the user
+				"error": fmt.Sprint(err),
+			})
+			return
+		}
+
+		c.JSON(200, gin.H{
+			"countries": mgoResult,
+		})
+	})
 	// TODO: item page - missions/country/country
 	r.GET("/missions/:homeCountry/:hostCountry", func(c *gin.Context) {
 		homeCountry := c.Param("homeCountry")
@@ -32,7 +52,7 @@ func main() {
 
 		// Call the service to get the embassies
 		// TODO: add GetDocuments method to get all embassies for a country
-		mgoResult, err := mgoService.GetDocument(models.Embassy{
+		mgoResult, err := mgoService.GetDocuments(models.Embassy{
 			HomeCountry: homeCountry,
 			HostCountry: hostCountry,
 		})
@@ -45,7 +65,7 @@ func main() {
 		}
 
 		c.JSON(200, gin.H{
-			"country": mgoResult,
+			"countries": mgoResult,
 		})
 	})
 
