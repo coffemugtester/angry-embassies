@@ -1,30 +1,66 @@
 package main
 
 import (
-	"conf"
+	config "configtest"
 	"fmt"
 	"github.com/gin-gonic/gin"
+	"html/template"
 	"models"
-	"repository/services"
-	"repository/usecases"
 )
 
-//TIP To run your code, right-click the code and select <b>Run</b>. Alternatively, click
-// the <icon src="AllIcons.Actions.Execute"/> icon in the gutter and select the <b>Run</b> menu item from here.
-
-// TODO: set up basic routing
-// TODO: host country's specific embassies - /country/embassies
-// TODO: host country's specific embassy - /country/embassies/country/city
-// TODO: home country's missions - /country/missions
-
+// TODO: load pinture to mongo too
 func main() {
 
-	con := conf.LoadConfig()
-	mgoUseCase := usecases.NewPersistenceUseCase(con.Mgo)
-	mgoService := services.NewMgoService(*mgoUseCase)
+	deps, err := config.InitDependencies()
+	if err != nil {
+		fmt.Printf("config.InitDependencies error: %v\n", err)
+		return
+	}
+
+	mgoService := deps.MgoService
 
 	r := gin.Default()
-	// TODO: item page - missions/country
+
+	//Serve static files (CSS, JS, images) from the static directory
+	r.Static("/static", "./static")
+
+	//// Parse multiple templates
+	//tmpl := template.Must(template.ParseFiles(
+	//	"templates/base.html",
+	//	"templates/home.html",
+	//	"templates/about.html",
+	//))
+
+	// Parse templates
+	tmpl := template.Must(template.ParseFiles("templates/template.html"))
+	// TODO: how to handle more than one template
+	r.SetHTMLTemplate(tmpl)
+
+	r.GET("/htmltest/:homeCountry/:hostCountry/:city", func(c *gin.Context) {
+		// TODO: add a handler to render the template
+
+		homeCountry := c.Param("homeCountry")
+		hostCountry := c.Param("hostCountry")
+		city := c.Param("city")
+
+		// Call the service to get the embassies
+		mgoResult, err := mgoService.GetDocument(models.Embassy{
+			HomeCountry: homeCountry,
+			HostCountry: hostCountry,
+			City:        city,
+		})
+		if err != nil {
+			c.JSON(500, gin.H{
+				// TODO: not exposing the error message to the user
+				"error": fmt.Sprint(err),
+			})
+			return
+		}
+
+		//tmpl.ExecuteTemplate(w, "home.html", nil) instead of the line below
+		c.HTML(200, "template.html", mgoResult)
+	})
+
 	r.GET("/missions/:homeCountry", func(c *gin.Context) {
 		homeCountry := c.Param("homeCountry")
 
@@ -45,13 +81,11 @@ func main() {
 			"countries": mgoResult,
 		})
 	})
-	// TODO: item page - missions/country/country
 	r.GET("/missions/:homeCountry/:hostCountry", func(c *gin.Context) {
 		homeCountry := c.Param("homeCountry")
 		hostCountry := c.Param("hostCountry")
 
 		// Call the service to get the embassies
-		// TODO: add GetDocuments method to get all embassies for a country
 		mgoResult, err := mgoService.GetDocuments(models.Embassy{
 			HomeCountry: homeCountry,
 			HostCountry: hostCountry,

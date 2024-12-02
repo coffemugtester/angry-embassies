@@ -1,8 +1,13 @@
 # TODO:
 
-[] Add a server
+[] add pictures to mongo
 
-[] Add read method to the repository
+[] Add InitHandler and isolate commands
+[] Create runService method
+
+[x] Add a server
+
+[x] Add read method to the repository
 
 [x] Make cmd directory; should contain 2 modules api-server and cli
 

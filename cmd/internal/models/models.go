@@ -7,6 +7,7 @@ type Embassy struct {
 	MapLink      string        `bson:"map_link"`
 	City         string        `bson:"city"`
 	GoogleID     string        `bson:"google_id"`
+	Picture      string        `bson:"picture"`
 	PlaceDetails *PlaceDetails `bson:"place_details"`
 
 	//TODO: implement methods to get the place details and the google id
@@ -14,12 +15,14 @@ type Embassy struct {
 
 func NewEmbassy(homeCountry string, hostCountry string, consulate bool, mapLink string, city string, googleID string, placeDetails PlaceDetails) *Embassy {
 	return &Embassy{
-		HomeCountry:  homeCountry,
-		HostCountry:  hostCountry,
-		IsConsulate:  consulate,
-		MapLink:      mapLink,
-		City:         city,
-		GoogleID:     googleID,
+		HomeCountry: homeCountry,
+		HostCountry: hostCountry,
+		IsConsulate: consulate,
+		MapLink:     mapLink,
+		City:        city,
+		GoogleID:    googleID,
+		// TODO: do I need a picture Base64 string too?
+		Picture:      "",
 		PlaceDetails: &placeDetails,
 	}
 }
@@ -31,22 +34,22 @@ type PlaceDetails struct {
 }
 
 type Result struct {
-	AddressComponents    []AddressComponent `json:"address_components" bson:"address_components"`
-	AdrAddress           string             `json:"adr_address" bson:"adr_address"`
-	BusinessStatus       string             `json:"business_status" bson:"business_status"`
-	CurrentOpeningHours  OpeningHours       `json:"current_opening_hours" bson:"current_opening_hours"`
-	FormattedAddress     string             `json:"formatted_address" bson:"formatted_address"`
-	FormattedPhoneNumber string             `json:"formatted_phone_number" bson:"formatted_phone_number"`
-	Geometry             Geometry           `json:"geometry" bson:"geometry"`
-	Icon                 string             `json:"icon" bson:"icon"`
+	AddressComponents        []AddressComponent `json:"address_components" bson:"address_components"`
+	AdrAddress               string             `json:"adr_address" bson:"adr_address"`
+	BusinessStatus           string             `json:"business_status" bson:"business_status"`
+	CurrentOpeningHours      OpeningHours       `json:"current_opening_hours" bson:"current_opening_hours"`
+	FormattedAddress         string             `json:"formatted_address" bson:"formatted_address"`
+	FormattedPhoneNumber     string             `json:"formatted_phone_number" bson:"formatted_phone_number"`
+	Geometry                 Geometry           `json:"geometry" bson:"geometry"`
+	Icon                     string             `json:"icon" bson:"icon"`
 	IconBackgroundColor      string             `json:"icon_background_color" bson:"icon_background_color"`
 	InternationalPhoneNumber string             `json:"international_phone_number" bson:"international_phone_number"`
-	Name                 string             `json:"name" bson:"name"`
-	OpeningHours         OpeningHours       `json:"opening_hours" bson:"opening_hours"`
-	Photos               []Photo            `json:"photos" bson:"photos"`
-	PlaceID              string             `json:"place_id" bson:"place_id"`
-	PlusCode             PlusCode           `json:"plus_code" bson:"plus_code"`
-	Rating               float64            `json:"rating" bson:"rating"`
+	Name                     string             `json:"name" bson:"name"`
+	OpeningHours             OpeningHours       `json:"opening_hours" bson:"opening_hours"`
+	Photos                   []Photo            `json:"photos" bson:"photos"`
+	PlaceID                  string             `json:"place_id" bson:"place_id"`
+	PlusCode                 PlusCode           `json:"plus_code" bson:"plus_code"`
+	Rating                   float64            `json:"rating" bson:"rating"`
 	//Reviews              []Review           `json:"reviews" bson:"reviews"`
 	Types            []string `json:"types" bson:"types"`
 	URL              string   `json:"url" bson:"url"`

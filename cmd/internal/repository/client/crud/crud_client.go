@@ -101,10 +101,6 @@ func (t MongoImpl) FindOne(document models.Embassy) (models.Embassy, error) {
 	}
 
 	var embassy models.Embassy
-
-	//The filter parameter must be a document containing query operators and can be used to select the document to be returned.
-	//It cannot be nil. If the filter does not match any documents, a SingleResult with an error set to ErrNoDocuments will be returned.
-	//If the filter matches multiple documents, one will be selected from the matched set.
 	err := t.collection.FindOne(context.TODO(), filter).Decode(&embassy)
 	if err != nil {
 		fmt.Printf("Error finding document: %v\n", err)
