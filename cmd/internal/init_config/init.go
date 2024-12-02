@@ -12,7 +12,7 @@ import (
 
 type Dependencies struct {
 	MgoService *services.MgoService
-	GglService *embs.EmbassyService
+	GglService *embs.IngestionService
 }
 
 func InitDependencies() (Dependencies, error) {
@@ -29,6 +29,6 @@ func InitDependencies() (Dependencies, error) {
 
 	return Dependencies{
 		MgoService: services.NewMgoService(mgoUseCase),
-		GglService: embs.NewEmbassyService(*gglUseCase),
+		GglService: embs.NewIngestionService(*gglUseCase),
 	}, nil
 }
