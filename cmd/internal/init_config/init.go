@@ -27,11 +27,8 @@ func InitDependencies() (Dependencies, error) {
 	gglUseCase := emb.NewEmbassyUsecase(cfg.ApiKey)
 	fmt.Printf("ggUseCase created: %v\n", gglUseCase)
 
-	//apiClient := api.NewClient(cfg.ApiKey)
-
 	return Dependencies{
 		MgoService: services.NewMgoService(mgoUseCase),
 		GglService: embs.NewEmbassyService(*gglUseCase),
-		//ApiClient: apiClient,
 	}, nil
 }

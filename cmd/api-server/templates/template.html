@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Business Info</title>
+    <link rel="stylesheet" href="../../../static/styles.css">
+</head>
+<body>
+<div class="business-card">
+    <div class="business-photo">
+            <img src="data:image/jpeg;base64,{{.Picture}}" alt="Business Photo">
+    </div>
+    <div class="business-details">
+        <h1 class="business-name">{{.PlaceDetails.Result.Name}}</h1>
+        <p><strong>Address:</strong> <span id="address">{{.PlaceDetails.Result.FormattedAddress}}</span></p>
+        <p><strong>Status:</strong> <span id="status">Open Now</span></p>
+        <p><strong>Opening Hours:</strong> <span id="hours">9:00 AM - 9:00 PM</span></p>
+        <p><strong>Phone:</strong> <a id="phone" href="tel:+1234567890">{{.PlaceDetails.Result.FormattedPhoneNumber}}</a></p>
+        <p><strong>Rating:</strong> <span id="rating">4.5</span> (based on <span id="ratings-total">120</span> reviews)</p>
+        <p><strong>URL:</strong> <a id="url" href="#" target="_blank">Visit Google Listing</a></p>
+        <p><strong>Website:</strong> <a id="website" href="{{.PlaceDetails.Result.Website}}" target="_blank">Visit Website</a></p>
+    </div>
+</div>
+</body>
+</html>

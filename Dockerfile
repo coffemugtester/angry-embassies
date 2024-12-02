@@ -30,7 +30,7 @@ COPY --from=build /app/cmd/cli .
 COPY --from=build /app/cmd/api-server .
 
 # Copy the configuration file to the correct location
-COPY cmd/internal/conf/local.yaml ./internal/conf/local.yaml
+COPY cmd/internal/init_config/conf/local.yaml ./internal/conf/local.yaml
 
 #Step 9: Expose the application port (if needed)
 #EXPOSE 8080

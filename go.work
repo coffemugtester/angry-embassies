@@ -5,9 +5,9 @@ use (
 	./cmd/api-server
 	./cmd/cli
 	./cmd/internal/api
-	./cmd/internal/embassy_sync
-	./cmd/internal/repository
-	./cmd/internal/conf
+	./cmd/internal/init_config/conf
+	./cmd/internal/ingestor
 	./cmd/internal/init_config
 	./cmd/internal/models
+	./cmd/internal/repository
 )

@@ -1,0 +1,57 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f9f9f9;
+    color: #333;
+    line-height: 1.6;
+    padding: 20px;
+}
+
+.business-card {
+    max-width: 600px;
+    margin: 0 auto;
+    background: #fff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.business-photo img {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+    border-bottom: 1px solid #ddd;
+}
+
+.business-details {
+    padding: 20px;
+}
+
+.business-name {
+    margin-bottom: 15px;
+    font-size: 1.5em;
+    color: #2c3e50;
+}
+
+.business-details p {
+    margin-bottom: 10px;
+}
+
+.business-details a {
+    color: #3498db;
+    text-decoration: none;
+}
+
+.business-details a:hover {
+    text-decoration: underline;
+}
+
+.business-details strong {
+    color: #555;
+}
