@@ -1,11 +1,11 @@
 package services
 
 import (
-	"embassy_sync/usecases"
+	"ingestor/usecases"
 	"models"
 )
 
-var _ EmbassySyncService = (*EmbassyService)(nil)
+var _ IngestionService = (*EmbassyService)(nil)
 
 type EmbassyService struct {
 	gglUsecase usecases.EmbassyUsecase

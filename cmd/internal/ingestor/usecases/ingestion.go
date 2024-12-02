@@ -53,10 +53,7 @@ func (e *EmbassyUsecase) GetEmbassyDetails(embassy models.Embassy) models.Embass
 		return models.Embassy{}
 	}
 	embassy.Picture, err = e.ApiClient.GetPlacePicture(embassy.PlaceDetails.Result.Photos[0].PhotoReference)
-	fmt.Println("Embassy picture: ", embassy.Picture)
-	fmt.Println("Embassy picture")
 	if err != nil {
-		fmt.Printf("New method broke!!!!: %v\n", err)
 		return models.Embassy{}
 	}
 	return embassy

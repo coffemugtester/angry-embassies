@@ -62,9 +62,9 @@ func registerCommands(deps *config.Dependencies) (cmds cliCommands) {
 		fmt.Println("Dependencies initialized")
 		//TODO: configs get google service to get embassy details
 		//TODO: how can I test it , or test different configs
-		emb, err := deps.GglService.GetEmbassyDetails(embassy)
+		emb, err := deps.IngestionService.GetEmbassyDetails(embassy)
 		if err != nil {
-			fmt.Printf("deps.GglService.GetEmbassy error: %v\n", err)
+			fmt.Printf("deps.IngestionService.GetEmbassy error: %v\n", err)
 			return
 		}
 

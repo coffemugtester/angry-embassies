@@ -4,7 +4,7 @@ import (
 	"models"
 )
 
-type EmbassySyncService interface {
+type IngestionService interface {
 	GetEmbassyDetails(embassy models.Embassy) (models.Embassy, error)
 	GetEmbassy(embassy models.Embassy) (models.Embassy, error)
 }

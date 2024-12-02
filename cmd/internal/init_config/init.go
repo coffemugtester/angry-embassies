@@ -2,9 +2,9 @@ package init_config
 
 import (
 	"conf"
-	embs "embassy_sync/services"
-	emb "embassy_sync/usecases"
 	"fmt"
+	embs "ingestor/services"
+	emb "ingestor/usecases"
 	"repository/client"
 	"repository/services"
 	"repository/usecases"
