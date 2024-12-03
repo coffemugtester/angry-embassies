@@ -6,6 +6,7 @@ import (
 	"github.com/gin-gonic/gin"
 	"html/template"
 	"models"
+	"repository/handlers"
 )
 
 // TODO: load pinture to mongo too
@@ -36,30 +37,8 @@ func main() {
 	// TODO: how to handle more than one template
 	r.SetHTMLTemplate(tmpl)
 
-	r.GET("/htmltest/:homeCountry/:hostCountry/:city", func(c *gin.Context) {
-		// TODO: add a handler to render the template
-
-		homeCountry := c.Param("homeCountry")
-		hostCountry := c.Param("hostCountry")
-		city := c.Param("city")
-
-		// Call the service to get the embassies
-		mgoResult, err := mgoService.GetDocument(models.Embassy{
-			HomeCountry: homeCountry,
-			HostCountry: hostCountry,
-			City:        city,
-		})
-		if err != nil {
-			c.JSON(500, gin.H{
-				// TODO: not exposing the error message to the user
-				"error": fmt.Sprint(err),
-			})
-			return
-		}
-
-		//tmpl.ExecuteTemplate(w, "home.html", nil) instead of the line below
-		c.HTML(200, "template.html", mgoResult)
-	})
+	handler := handlers.NewEmbassyHandler(*mgoService)
+	r.GET("/htmltest/:homeCountry/:hostCountry/:city", handler.GetDocuments)
 
 	r.GET("/missions/:homeCountry", func(c *gin.Context) {
 		homeCountry := c.Param("homeCountry")
