@@ -16,7 +16,7 @@ func InsertDocument(client *Client, document models.Embassy) (string, error) {
 	return insertedDoc, nil
 }
 
-// TODO: Implement GetDocuments
+// TODO: Implement GetDocument
 
 func GetDocument(client *Client, document models.Embassy) (models.Embassy, error) {
 

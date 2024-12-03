@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Business Overview</title>
+    <link rel="stylesheet" href="../../../static/styles.css">
+</head>
+<body>
+<div class="business-overview">
+    {{range .}}
+    <div class="business-card">
+        <div class="business-photo">
+            <img src="data:image/jpeg;base64,{{.Picture}}" alt="Business Photo">
+        </div>
+        <div class="business-details">
+            <h1 class="business-name">{{.PlaceDetails.Result.Name}}</h1>
+            <p><strong>Address:</strong> <span id="address">{{.PlaceDetails.Result.FormattedAddress}}</span></p>
+            <p><strong>Rating:</strong> <span id="rating">{{.PlaceDetails.Result.Rating}}</span> (based on <span id="ratings-total"> x </span> reviews)</p>
+            <a href="/business/" class="view-details">View Details</a>
+        </div>
+    </div>
+    {{end}}
+</div>
+</body>
+</html>

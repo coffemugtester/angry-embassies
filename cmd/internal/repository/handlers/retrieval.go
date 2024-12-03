@@ -19,17 +19,21 @@ func NewEmbassyHandler(service services.MgoService) *EmbassyHandler {
 	}
 }
 
-func (e *EmbassyHandler) GetDocuments(c *gin.Context) {
-	homeCountry := c.Param("homeCountry")
-	hostCountry := c.Param("hostCountry")
-	city := c.Param("city")
+func (e *EmbassyHandler) GetDocument(c *gin.Context) {
+
+	var embassy models.Embassy
+	if c.Param("homeCountry") != "" {
+		embassy.HomeCountry = c.Param("homeCountry")
+	}
+	if c.Param("hostCountry") != "" {
+		embassy.HostCountry = c.Param("hostCountry")
+	}
+	if c.Param("city") != "" {
+		embassy.City = c.Param("city")
+	}
 
 	// Call the service to get the embassies
-	mgoResult, err := e.service.GetDocuments(models.Embassy{
-		HomeCountry: homeCountry,
-		HostCountry: hostCountry,
-		City:        city,
-	})
+	mgoResult, err := e.service.GetDocument(embassy)
 	if err != nil {
 		c.JSON(500, gin.H{
 			// TODO: not exposing the error message to the user
@@ -40,35 +44,28 @@ func (e *EmbassyHandler) GetDocuments(c *gin.Context) {
 
 	//tmpl.ExecuteTemplate(w, "home.html", nil) instead of the line below
 	c.HTML(200, "template.html", mgoResult)
-
 }
 
-//func parseParameters(c *gin.Context) (models.Embassy, error) {
-//
-//	homeCountry := c.Param("homeCountry")
-//	hostCountry := c.Param("hostCountry")
-//	city := c.Param("city")
-//
-//	filter := make(map[string]interface{})
-//	if homeCountry != "" {
-//		filter["home_country"] = homeCountry
-//	}
-//	if hostCountry != "" {
-//		filter["host_country"] = hostCountry
-//	}
-//	if city != "" {
-//		filter["city"] = city
-//	}
-//
-//	serializedParams, err := json.Marshal(filter)
-//	if err != nil {
-//		return models.Embassy{}, err
-//	}
-//
-//	embassy := models.Embassy{}
-//	err = json.Unmarshal(serializedParams, &embassy)
-//	if err != nil {
-//		return models.Embassy{}, err
-//	}
-//	return embassy, nil
-//}
+func (e *EmbassyHandler) GetDocuments(c *gin.Context) {
+
+	var embassy models.Embassy
+	if c.Param("homeCountry") != "" {
+		embassy.HomeCountry = c.Param("homeCountry")
+	}
+	if c.Param("hostCountry") != "" {
+		embassy.HostCountry = c.Param("hostCountry")
+	}
+
+	// Call the service to get the embassies
+	mgoResult, err := e.service.GetDocuments(embassy)
+	if err != nil {
+		c.JSON(500, gin.H{
+			// TODO: not exposing the error message to the user
+			"error": fmt.Sprint(err),
+		})
+		return
+	}
+
+	//tmpl.ExecuteTemplate(w, "home.html", nil) instead of the line below
+	c.HTML(200, "missions_overview.html", mgoResult)
+}
